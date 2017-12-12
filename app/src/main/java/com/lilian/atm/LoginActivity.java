@@ -13,35 +13,30 @@ import static com.lilian.atm.MainActivity.REQUEST_LOGIN;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private EditText edUserid;
+    private EditText edPasswd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        edUserid = (EditText) findViewById(R.id.userid);
+        edPasswd = (EditText) findViewById(R.id.passwd);
+        String userid =getSharedPreferences("atm",MODE_PRIVATE)
+                .getString("USERID","");
+        edUserid.setText(userid);
     }
 
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == REQUEST_LOGIN){
-            String userid = data.getStringExtra("LOGIN_USERID");
-            String passwd = data.getStringExtra("LOGIN_PASSWD");
-            Log.d("RESULT",userid + "/" + passwd);
-        }else{
-            finish();
-        }
-    }
 
     public void login (View view){
-        EditText edUserid = (EditText) findViewById(R.id.userid);
-        EditText edPasswd = (EditText) findViewById(R.id.passwd);
+
         String userid = edUserid.getText().toString();
         String passwd = edPasswd.getText().toString();
         if ("jack".equals(userid)&&"1234".equals(passwd)){
-            Toast.makeText(this,"登入成功",Toast.LENGTH_SHORT).show();
-            getIntent().putExtra("LOGIN_USERID",userid);
-            getIntent().putExtra("LOGIN_PASSWD",passwd);
+            Toast.makeText(this,"登入成功",Toast.LENGTH_LONG).show();git
+            getIntent().putExtra("EXRA_USERID",userid);
+            setResult(RESULT_OK,getIntent());
             finish();
         }else{
             new AlertDialog.Builder(this)

@@ -8,13 +8,19 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     boolean logan = false;
     public  static final int REQUEST_LOGIN=102;
+    public  static final  int REQUEST_USERINFO=1;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +42,31 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode){
+            case REQUEST_LOGIN:
+                if (requestCode == RESULT_OK) {
+                    String userid = data.getStringExtra("EXRA_USERID");
+                    Toast.makeText(this,"Login userid:" +userid,Toast.LENGTH_LONG).show();
+                    getSharedPreferences("atm",MODE_PRIVATE)
+                            .edit()
+                            .putString("USERID",userid)
+                            .apply();
+                } else {
+                    finish();
+                }
+                break;
+            case REQUEST_USERINFO:
+                if (requestCode == RESULT_OK) {
+                    String edname = data.getStringExtra("EXTRA_NAME");
+                    String ednum = data.getStringExtra("EXTRA_NUM");
+                    Toast.makeText(this,"Login userid:" +edname,Toast.LENGTH_LONG).show();
+                    Toast.makeText(this,"Phone: " +ednum,Toast.LENGTH_LONG).show();
+                }
+                finish();
+        }}
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
