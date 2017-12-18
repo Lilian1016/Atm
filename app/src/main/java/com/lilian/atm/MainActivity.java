@@ -15,9 +15,9 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    boolean logan = false;
+    boolean logon = false;
     public  static final int REQUEST_LOGIN=102;
-    public  static final  int REQUEST_USERINFO=1;
+    public  static final  int REQUEST_USERINFO=105;
 
 
 
@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if (!logan){
+        if (!logon){
             Intent intent = new Intent(this,LoginActivity.class);
             startActivityForResult(intent,REQUEST_LOGIN);
         }
@@ -37,8 +37,10 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent userInfo = new Intent(MainActivity.this,UserInfoActivity.class);
+                startActivityForResult(userInfo,REQUEST_USERINFO);
+            //    Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+             //           .setAction("Action", null).show();
             }
         });
     }
@@ -62,10 +64,10 @@ public class MainActivity extends AppCompatActivity {
                 if (requestCode == RESULT_OK) {
                     String edname = data.getStringExtra("EXTRA_NAME");
                     String ednum = data.getStringExtra("EXTRA_NUM");
-                    Toast.makeText(this,"Login userid:" +edname,Toast.LENGTH_LONG).show();
+                    Toast.makeText(this,"Name:" +edname,Toast.LENGTH_LONG).show();
                     Toast.makeText(this,"Phone: " +ednum,Toast.LENGTH_LONG).show();
                 }
-                finish();
+                break;
         }}
 
     @Override

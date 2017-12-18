@@ -1,6 +1,7 @@
 package com.lilian.atm;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,8 +24,10 @@ public class LoginActivity extends AppCompatActivity {
         edUserid = (EditText) findViewById(R.id.userid);
         edPasswd = (EditText) findViewById(R.id.passwd);
         String userid =getSharedPreferences("atm",MODE_PRIVATE)
-                .getString("USERID","");
+                .getString("PREF_USERID","");
         edUserid.setText(userid);
+        String passwd = getSharedPreferences("atm",MODE_PRIVATE)
+                .getString("PREF_PASSWD","");
     }
 
 
@@ -34,7 +37,13 @@ public class LoginActivity extends AppCompatActivity {
         String userid = edUserid.getText().toString();
         String passwd = edPasswd.getText().toString();
         if ("jack".equals(userid)&&"1234".equals(passwd)){
-            Toast.makeText(this,"登入成功",Toast.LENGTH_LONG).show();git
+            SharedPreferences setting =
+            getSharedPreferences("atm",MODE_PRIVATE);
+            setting.edit()
+                    .putString("PREF_PASSWD",passwd)
+                    .putString("PREF_USERID",userid)
+                    .commit();
+            Toast.makeText(this,"登入成功",Toast.LENGTH_LONG).show();
             getIntent().putExtra("EXRA_USERID",userid);
             setResult(RESULT_OK,getIntent());
             finish();
