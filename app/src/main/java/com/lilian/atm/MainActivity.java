@@ -19,9 +19,6 @@ public class MainActivity extends AppCompatActivity {
     public  static final int REQUEST_LOGIN=102;
     public  static final  int REQUEST_USERINFO=105;
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
