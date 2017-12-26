@@ -2,6 +2,7 @@ package com.lilian.atm;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.provider.Telephony;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -51,5 +52,9 @@ public class UserInfoActivity extends AppCompatActivity {
         getIntent().putExtra("EXTRA_NUM",ednum);
         setResult(RESULT_OK,getIntent());
         finish();
+    }
+    public void addr(View view){
+        Intent intent = new Intent(this, CityActivity.class);
+        startActivity(intent);
     }
 }

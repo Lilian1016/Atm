@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode){
             case REQUEST_LOGIN:
-                if (requestCode == RESULT_OK) {
+                if (resultCode == RESULT_OK) {
                     String userid = data.getStringExtra("EXRA_USERID");
                     Toast.makeText(this,"Login userid:" +userid,Toast.LENGTH_LONG).show();
                     getSharedPreferences("atm",MODE_PRIVATE)
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 break;
             case REQUEST_USERINFO:
-                if (requestCode == RESULT_OK) {
+                if (resultCode == RESULT_OK) {
                     String edname = data.getStringExtra("EXTRA_NAME");
                     String ednum = data.getStringExtra("EXTRA_NUM");
                     Toast.makeText(this,"Name:" +edname,Toast.LENGTH_LONG).show();

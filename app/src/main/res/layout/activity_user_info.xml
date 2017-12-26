@@ -86,4 +86,15 @@
         android:layout_marginTop="36dp"
         app:layout_constraintLeft_toRightOf="@+id/textView5"
         app:layout_constraintTop_toBottomOf="@+id/ednum" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="31dp"
+        android:layout_marginTop="32dp"
+        android:onClick="addr"
+        android:text="住址"
+        app:layout_constraintLeft_toRightOf="@+id/button3"
+        app:layout_constraintTop_toBottomOf="@+id/ages" />
 </android.support.constraint.ConstraintLayout>

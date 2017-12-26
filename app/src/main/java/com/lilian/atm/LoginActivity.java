@@ -37,16 +37,17 @@ public class LoginActivity extends AppCompatActivity {
         String userid = edUserid.getText().toString();
         String passwd = edPasswd.getText().toString();
         if ("jack".equals(userid)&&"1234".equals(passwd)){
+            Toast.makeText(this,"登入成功",Toast.LENGTH_LONG).show();
             SharedPreferences setting =
-            getSharedPreferences("atm",MODE_PRIVATE);
+                    getSharedPreferences("atm",MODE_PRIVATE);
             setting.edit()
                     .putString("PREF_PASSWD",passwd)
                     .putString("PREF_USERID",userid)
-                    .commit();
-            Toast.makeText(this,"登入成功",Toast.LENGTH_LONG).show();
+                    .apply();
             getIntent().putExtra("EXRA_USERID",userid);
             setResult(RESULT_OK,getIntent());
             finish();
+
         }else{
             new AlertDialog.Builder(this)
                     .setTitle("登入")
