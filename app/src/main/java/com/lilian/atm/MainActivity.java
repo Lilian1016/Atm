@@ -12,7 +12,11 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Toast;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     boolean logon = false;
@@ -23,9 +27,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if (!logon){
-            Intent intent = new Intent(this,LoginActivity.class);
-            startActivityForResult(intent,REQUEST_LOGIN);
+        if (!logon) {
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivityForResult(intent, REQUEST_LOGIN);
         }
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -34,12 +38,16 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent userInfo = new Intent(MainActivity.this,UserInfoActivity.class);
-                startActivityForResult(userInfo,REQUEST_USERINFO);
-            //    Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-             //           .setAction("Action", null).show();
+                Intent userInfo = new Intent(MainActivity.this, UserInfoActivity.class);
+                startActivityForResult(userInfo, REQUEST_USERINFO);
+                //    Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                //           .setAction("Action", null).show();
             }
         });
+        ListView ListView = (ListView) findViewById(R.id.listview);
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1);
+        ListView.setAdapter(adapter);
+
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
